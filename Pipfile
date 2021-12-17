@@ -52,6 +52,7 @@ Eel = "==0.12.4"
 Pillow = "==8.4.0"
 pyOpenSSL = "==21.0.0"
 PySimpleGUI = "==4.55.1"
+gunicorn = "*"
 
 [dev-packages]
 
