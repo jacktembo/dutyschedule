@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+  <meta content="Check The Teacher On Duty" name="description" />
+  <meta content=" Teacher on Duty School 
+          lusaka zambia." name="keywords" />
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet" />
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet" />
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" />
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet" />
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+  <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet" />
+  <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet" />
+  <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet" />
+
+  <!-- Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" />
+</head>
+<style>
+  .dropdown-active {
+    background-color: rgb(199, 206, 219) !important;
+  }
+
+  header {
+    background-color: black;
+  }
+
+  section {
+    margin-top: 7vw;
+  }
+
+  @media screen and (max-width: 768px) {
+    .navbar ul {
+      background-color: rgb(199, 206, 219);
+    }
+  }
+</style>
+
+<body>
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+      <h1 class="logo me-auto"><a href="{% url 'index' %}">TDS</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="v2.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li>
+            <a class="nav-link scrollto" href="{% url 'index' %}">Go To Home</a>
+          </li>
+          {% if request.user.is_authenticated %}
+          <li class="dropdown">
+            <a href="#"><span>More</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li class="announcements">
+                <a href="{% url 'routine:announcements' %}">Announcements</a>
+              </li>
+              <li class="duty">
+                <a href="{% url 'routine:today-rota' %}">Teachers On Duty</a>
+              </li>
+              {% if request.user.is_staff %}
+              <li><a href="/admin">Admin Area</a></li>
+              {% endif %}
+            </ul>
+          </li>
+          {% endif %} {% if request.user.is_authenticated %}
+          <li>
+            <a class="getstarted scrollto" href="{% url 'accounts:logout' %}">Logout</a>
+          </li>
+          {% else %}
+          <li>
+            <a class="getstarted scrollto" href="{% url 'accounts:login' %}">Login</a>
+          </li>
+          {% endif %}
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+      <!-- .navbar -->
+    </div>
+  </header>
+  <!-- End Header -->
+  <section>{% block content %} {% endblock content %}</section>
+  <section class="announcements">
+    {% block announcements %} {% endblock %}
+  </section>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+  <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/waypoints/noframework.waypoints.js' %}"></script>
+
+  <!-- Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+</body>
+
+</html>

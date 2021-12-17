@@ -1,0 +1,60 @@
+{% extends "routine/dashboard.html" %}
+
+{% load static %}
+{% block content %}
+<title>Announcement</title>
+<style>
+    .card-title {
+        text-decoration: underline;
+    }
+
+    .card {
+        width: 95vw !important;
+        background-color: rgb(208, 215, 221);
+    }
+
+    .card-img-top {
+        width: 30vw;
+    }
+
+    .btn-primary {
+        width: 100%;
+    }
+
+    body {
+        background-color: rgb(173, 173, 194);
+    }
+
+    .back {
+        background-color: dodgerblue;
+    }
+
+    @media screen and (min-width: 1024px) {
+        .card {
+            width: 96vw !important;
+            margin-left: 1vw;
+        }
+
+        .card-img-top {
+            width: 15vw;
+        }
+    }
+
+    .card-box {
+        display: flex;
+        justify-content: center;
+    }
+</style>
+<div class="card-box">
+    <div class="card" style="width: 18rem;">
+        <img src="{% static 'images/announcement-detail.svg' %}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h3 class="card-title">{{announcement.subject}}</h3>
+            <p class="card-text">{{announcement.body}}</p>
+            <a class="btn btn-primary">{{announcement.published_date_time}}</a>
+            <a href="{% url 'routine:announcements' %}" class="btn btn-primary back">
+                &lt;---- </__>Go Back</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

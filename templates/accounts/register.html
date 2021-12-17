@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% extends "milligram.html" %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<style>
+    form {
+        width: 60%;
+    }
+</style>
+<body>
+<form action="{% url 'accounts:register' %}" method="post">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit">Sign me up</button>
+</form>
+</body>  
+{% endblock content %}
+
+</html>

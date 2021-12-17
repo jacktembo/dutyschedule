@@ -1,0 +1,98 @@
+{% extends "routine/dashboard.html" %} {% load static %} {% block content %}
+<h1 class="main-heading">Announcements</h1>
+<title>Announcements</title>
+
+<style>
+  .main-heading {
+    text-align: center;
+    letter-spacing: 0.3rem;
+    margin-bottom: 1.5rem;
+    text-transform: capitalize;
+    color: rgb(41, 102, 163);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .card {
+    background-color: rgb(208, 215, 221);
+  }
+
+  .card-title {
+    text-decoration: underline;
+  }
+
+  .card-title:hover,
+  .card-text:hover {
+    color: black;
+  }
+
+  .card-list-item {
+    margin-right: 5vw !important;
+    list-style-type: none !important;
+    border-radius: 1%;
+    transform: scale(1.05);
+  }
+
+  .card-list {
+    text-align: center;
+    margin-right: 1rem;
+  }
+
+  .col-md-4 img {
+    transform: scale(0.4);
+  }
+
+
+  body {
+    background-color: rgb(173, 173, 194);
+  }
+
+  @media screen and (min-width: 1024px) {
+    .card {
+      border-radius: 2%;
+      width: 105% !important;
+    }
+
+    .card-list-item {
+      display: inline-block;
+      border: unset;
+    }
+
+    .card-list {
+      display: inline-block;
+      width: 45vw;
+    }
+  }
+
+  li.announcements {
+    display: none;
+  }
+</style>
+
+{% for announcement in announcements %}
+<ul class="card-list">
+  <li class="card-list-item">
+    <a href="{% url 'routine:announcement-detail' announcement.id %}">
+      <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{% static 'images/announcement.svg' %}" alt="announcements icon" />
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h4 class="card-title">{{announcement.subject}}</h4>
+              <p class="card-text">{{announcement.body | truncatechars:75}}</p>
+              <p class="card-text">
+                <small class="text-muted">{{announcement.published_date_time}}</small>
+              </p>
+              <a href="{% url 'routine:announcement-detail' announcement.id %}" class="btn btn-primary">Read More</a>
+            </div>
+          </div>
+        </div>
+    </a>
+    </div>
+  </li>
+</ul>
+{% endfor %} {% endblock%}
